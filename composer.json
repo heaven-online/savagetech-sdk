@@ -1,0 +1,52 @@
+{
+    "name": "lucifergaming/savagetech-sdk",
+    "description": "整合 SavageTech 遊戲化 API 的 Laravel 套件",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LuciferGaming",
+            "email": "contact@lucifergaming.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/support": "^8.0|^9.0|^10.0",
+        "illuminate/console": "^8.0|^9.0|^10.0",
+        "illuminate/contracts": "^8.0|^9.0|^10.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.35",
+        "phpunit/phpunit": "^9.0|^10.0",
+        "pestphp/pest": "^2.36",
+        "pestphp/pest-plugin-laravel": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "LuciferGaming\\SavageTechSDK\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LuciferGaming\\SavageTechSDK\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LuciferGaming\\SavageTechSDK\\Providers\\SavageTechServiceProvider"
+            ],
+            "aliases": {
+                "SavageTech": "LuciferGaming\\SavageTechSDK\\Facades\\SavageTech"
+            }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
