@@ -18,7 +18,7 @@ class SavageTechController extends Controller
     public function getInitCode(Request $request)
     {
         try {
-            $userId = $request->query('user_id', auth()->user()?->id);
+            $userId = $request->query('user_id', auth()->user()?->account_name ?? auth()->user()?->id);
             $currency = $request->query('currency');
 
             if (!$userId) {
