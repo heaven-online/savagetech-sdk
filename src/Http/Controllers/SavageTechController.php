@@ -18,7 +18,7 @@ class SavageTechController extends Controller
     public function getInitCode(Request $request)
     {
         try {
-            $userId = $request->query('user_id', auth()->user()?->account_name ?? auth()->user()?->id);
+            $userId = $request->query('user_id', auth()->user()?->id);
             $currency = $request->query('currency');
 
             if (!$userId) {
@@ -30,8 +30,10 @@ class SavageTechController extends Controller
                 $config = json_decode($config, true) ?: [];
             }
 
+            $username = auth()->user()?->account_name;
+
             // 生成初始化代碼和獲取 token
-            $result = SavageTech::generateWidgetInitCode($userId, $config, $currency);
+            $result = SavageTech::generateWidgetInitCode($userId, $config, $currency, $username);
             $initCode = $result['init_code'];
             $token = $result['token'];
             

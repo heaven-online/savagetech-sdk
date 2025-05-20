@@ -74,16 +74,22 @@ class SavageTechService
      * @return array
      * @throws \LuciferGaming\SavageTechSDK\Exceptions\SavageTechException
      */
-    public function getAccessToken(string $userId, $currency = null)
+    public function getAccessToken(string $userId, $currency = null, $username = null)
     {
         if ($currency === null) {
             $currency = config('savagetech.default_currency', 'usd');
         }
 
-        return $this->sendRequest('POST', '/accesstokens', [
+        $data = [
             'userId' => $userId,
             'currency' => $currency
-        ]);
+        ];
+
+        if ($username) {
+            $data['username'] = $username;
+        }
+
+        return $this->sendRequest('POST', '/accesstokens', $data);
     }
 
     /**
@@ -210,9 +216,9 @@ class SavageTechService
      * @return array 返回包含初始化代碼和 token 信息的數組
      * @throws \LuciferGaming\SavageTechSDK\Exceptions\SavageTechException
      */
-    public function generateWidgetInitCode($userId, array $config = [], $currency = null)
+    public function generateWidgetInitCode($userId, array $config = [], $currency = null, $username = null)
     {
-        $accessToken = $this->getAccessToken($userId, $currency);
+        $accessToken = $this->getAccessToken($userId, $currency, $username);
         
         $initConfig = [
             'credentials' => [
