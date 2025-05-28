@@ -33,7 +33,7 @@ class SavageTechController extends Controller
             $username = auth()->user()?->account_name;
 
             // 生成初始化代碼和獲取 token
-            $result = SavageTech::generateWidgetInitCode($userId, $config, $currency, $username);
+            $result = SavageTech::generateWidgetInitCode($userId, $config, $currency, null);
             $initCode = $result['init_code'];
             $token = $result['token'];
             
